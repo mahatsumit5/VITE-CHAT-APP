@@ -51,3 +51,14 @@ export const getAllUsers = async () => {
     console.log(error);
   }
 };
+export const getChatRoom = async ({ from, to }) => {
+  try {
+    const { data } = await axios({
+      method: "get",
+      url: `http://localhost:8000/api/v1/chat-room/${from}/${to}`,
+    });
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -1,14 +1,23 @@
-import { Avatar, Box, Divider, TextField, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Divider,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { getAllUsers } from "../axios/userAxios";
 import Users from "../components/Users";
 import MessageBoxHeader from "../components/MessageBoxHeader";
 import Messages from "../components/Messages";
+import { sendMessage } from "../axios/messageAxios";
 
 const ChatRoom = () => {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelecteduser] = useState({});
   const [isOpen, setOpen] = useState(true);
+  const [content, setContent] = useState("");
   async function getusers() {
     const { status, users } = await getAllUsers();
     if (status === true) {
@@ -19,7 +28,16 @@ const ChatRoom = () => {
   useEffect(() => {
     getusers();
   }, []);
+  const handleSend = async (e) => {
+    e.preventDefault();
+    const obj = {
+      content: content,
+      to: selectedUser.id,
+      from: localStorage.getItem("user"),
+    };
 
+    await sendMessage(selectedUser.id);
+  };
   return (
     <Box
       sx={{
@@ -80,8 +98,17 @@ const ChatRoom = () => {
             <Messages />
           </Box>
           {/* input field */}
-          <Box>
-            <TextField fullWidth name="message" />
+          <Box sx={{ display: "flex", gap: 2 }}>
+            <TextField
+              fullWidth
+              name="message"
+              onChange={(e) => {
+                setContent(e.target.value);
+              }}
+            />
+            <Button variant="contained" color="success" onClick={handleSend}>
+              Send
+            </Button>
           </Box>
           {/* header */}
         </Box>
