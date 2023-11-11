@@ -1,13 +1,18 @@
 import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { getUserByEmail } from "../axios/userAxios";
+import { loginAction } from "../action/userAction";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const handleLogin = async () => {
-    const { status, user } = await getUserByEmail(email);
+    const status = await dispatch(loginAction(email));
     if (status === true) {
-      localStorage.setItem("user", user.id);
+      navigate("/chat");
     }
   };
   return (

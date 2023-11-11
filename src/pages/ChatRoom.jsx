@@ -10,110 +10,57 @@ import React, { useEffect, useState } from "react";
 import { getAllUsers } from "../axios/userAxios";
 import Users from "../components/Users";
 import MessageBoxHeader from "../components/MessageBoxHeader";
-import Messages from "../components/Messages";
+import Messages from "../components/chatPage/MessagesComp";
 import { sendMessage } from "../axios/messageAxios";
+import { getChatRoom } from "../axios/chatRoomAxios";
+import { useDispatch, useSelector } from "react-redux";
+import { getChatRoomAction } from "../action/chatRoomAction";
+import { getFriendIndex } from "../getFriendIndexFunction";
 
 const ChatRoom = () => {
+  const { user } = useSelector((store) => store.user);
+  const { chatRoom } = useSelector((store) => store.chatRoom);
+  const dispatch = useDispatch();
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelecteduser] = useState({});
   const [isOpen, setOpen] = useState(true);
   const [content, setContent] = useState("");
+
   async function getusers() {
     const { status, users } = await getAllUsers();
     if (status === true) {
       setUsers(users);
-      setSelecteduser(users[0]);
+      // setSelecteduser(users[0]);
     }
+  }
+  async function getRooms() {
+    dispatch(getChatRoomAction(user.id));
   }
   useEffect(() => {
     getusers();
+    getRooms();
+    if (!chatRoom) {
+      return;
+    }
   }, []);
+
   const handleSend = async (e) => {
     e.preventDefault();
     const obj = {
       content: content,
       to: selectedUser.id,
-      from: localStorage.getItem("user"),
+      from: user.id,
     };
 
     await sendMessage(selectedUser.id);
   };
   return (
-    <Box
-      sx={{
-        height: "90vh",
-        width: "70vw",
-        m: "auto",
-        display: "flex",
-        flexDirection: "column",
-        gap: 2,
-        boxShadow: 2,
-        borderRadius: 5,
-        p: 4,
-      }}
-    >
+    <>
       <MessageBoxHeader setOpen={setOpen} open={isOpen} />
       <Divider />
-      <Box sx={{ display: "flex", height: "100%" }}>
-        {/* user information */}
-        {isOpen && (
-          <Box
-            sx={{
-              width: "40%",
 
-              p: 1,
-              borderRight: 2,
-              color: "grey",
-            }}
-          >
-            <TextField fullWidth sx={{ borderRadius: 12 }} label="Search" />
-            {users.map((user) => (
-              <Users
-                key={user.id}
-                user={user}
-                setSelecteduser={setSelecteduser}
-              />
-            ))}
-          </Box>
-        )}
-        {/* chat box */}
-        <Box
-          sx={{
-            width: isOpen ? "60%" : "100%",
-            display: "flex",
-            justifyContent: "space-between",
-            p: 1,
-            gap: 2,
-            flexDirection: "column",
-          }}
-        >
-          {/* headers */}
-          <Box>
-            <Avatar />
-            <Typography variant="body1">{selectedUser.fName}</Typography>
-            <Divider />
-          </Box>
-          {/* messages */}
-          <Box sx={{}}>
-            <Messages />
-          </Box>
-          {/* input field */}
-          <Box sx={{ display: "flex", gap: 2 }}>
-            <TextField
-              fullWidth
-              name="message"
-              onChange={(e) => {
-                setContent(e.target.value);
-              }}
-            />
-            <Button variant="contained" color="success" onClick={handleSend}>
-              Send
-            </Button>
-          </Box>
-          {/* header */}
-        </Box>
-      </Box>
-    </Box>
+      <Users />
+    </>
   );
 };
 

@@ -1,10 +1,10 @@
 import React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import Users from "./Users";
-import { Box, Button, Typography } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import { Avatar, Box, Button, Typography } from "@mui/material";
 const MessageBoxHeader = ({ setOpen, open }) => {
   return (
-    <Box sx={{ display: "flex", gap: 2, justifyContent: "flex-start" }}>
+    <Box sx={{ display: "flex", gap: 2, justifyContent: "space-between" }}>
       <a
         onClick={() => {
           setOpen(!open);
@@ -13,7 +13,8 @@ const MessageBoxHeader = ({ setOpen, open }) => {
         <MenuIcon color="primary" />
       </a>
 
-      <Typography variant="h6"> My Chat</Typography>
+      <Typography> Messenger</Typography>
+      <SearchIcon color="secondary" />
     </Box>
   );
 };
