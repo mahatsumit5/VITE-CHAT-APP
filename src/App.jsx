@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import ChatRoom from "./pages/ChatRoom";
 import Messages from "./pages/Messages";
 import UserLayout from "./components/UserLayout";
+import ListOfUsers from "./pages/ListOfUsers";
 function App() {
   return (
     <>
@@ -27,6 +28,14 @@ function App() {
           element={
             <UserLayout>
               <Messages />
+            </UserLayout>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <UserLayout>
+              <ListOfUsers />
             </UserLayout>
           }
         />

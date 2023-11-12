@@ -2,7 +2,7 @@ import { Avatar, Box, Divider, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getFriendIndex } from "../getFriendIndexFunction";
+import { getFriendIndex } from "../../getFriendIndexFunction";
 let index;
 
 const Users = () => {
@@ -32,6 +32,7 @@ const Users = () => {
               sx={{
                 display: "flex",
                 justifyContent: "flex-start",
+
                 mt: 1,
                 gap: 2,
               }}

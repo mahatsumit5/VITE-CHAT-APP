@@ -23,3 +23,18 @@ export const getChatRoomById = async (id) => {
     console.log(error);
   }
 };
+
+export const createChatRoom = async (obj) => {
+  try {
+    const { data } = await axios({
+      method: "post",
+      url: `http://127.0.0.1:8000/api/v1/chat-room`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: obj,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
