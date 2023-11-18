@@ -4,7 +4,7 @@ export const sendMessage = async ({ to, from, content }) => {
     const { data } = await axios({
       method: "post",
 
-      url: "http://127.0.0.1:8000/api/v1/message",
+      url: "https://messenger-ezhi.onrender.com/api/v1/message",
       data: {
         content: content,
         to: to,

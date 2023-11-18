@@ -9,7 +9,10 @@ import Messages from "./pages/Messages";
 import UserLayout from "./components/UserLayout";
 import ListOfUsers from "./pages/ListOfUsers";
 import PrivatePage from "./components/PrivatePage";
+import { connectSocket } from "./socketIo/socket";
+
 function App() {
+  // connectSocket();
   return (
     <>
       <Routes>
