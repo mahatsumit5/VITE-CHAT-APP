@@ -40,7 +40,7 @@ function App() {
           }
         />
         <Route
-          path="/users"
+          path="/chat/users"
           element={
             <PrivatePage>
               <UserLayout>
