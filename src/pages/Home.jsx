@@ -30,7 +30,14 @@ const Home = () => {
         >
           Login
         </Button>
-        <Button variant="contained" color="success" sx={{ marginLeft: 2 }}>
+        <Button
+          variant="contained"
+          color="success"
+          sx={{ marginLeft: 2 }}
+          onClick={() => {
+            navigate("/signup");
+          }}
+        >
           Sign up
         </Button>
       </div>
