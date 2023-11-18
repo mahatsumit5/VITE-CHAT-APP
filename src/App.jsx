@@ -8,6 +8,7 @@ import ChatRoom from "./pages/ChatRoom";
 import Messages from "./pages/Messages";
 import UserLayout from "./components/UserLayout";
 import ListOfUsers from "./pages/ListOfUsers";
+import PrivatePage from "./components/PrivatePage";
 function App() {
   return (
     <>
@@ -18,25 +19,31 @@ function App() {
         <Route
           path="/chat"
           element={
-            <UserLayout>
-              <ChatRoom />
-            </UserLayout>
+            <PrivatePage>
+              <UserLayout>
+                <ChatRoom />
+              </UserLayout>
+            </PrivatePage>
           }
         />
         <Route
           path="/chat/:id"
           element={
-            <UserLayout>
-              <Messages />
-            </UserLayout>
+            <PrivatePage>
+              <UserLayout>
+                <Messages />
+              </UserLayout>
+            </PrivatePage>
           }
         />
         <Route
           path="/users"
           element={
-            <UserLayout>
-              <ListOfUsers />
-            </UserLayout>
+            <PrivatePage>
+              <UserLayout>
+                <ListOfUsers />
+              </UserLayout>
+            </PrivatePage>
           }
         />
       </Routes>

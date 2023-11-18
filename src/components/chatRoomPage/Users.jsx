@@ -1,8 +1,9 @@
 import { Avatar, Box, Divider, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getFriendIndex } from "../../getFriendIndexFunction";
+
 let index;
 
 const Users = () => {
@@ -17,7 +18,7 @@ const Users = () => {
 
   return (
     <>
-      {chatRoom.map((room, i) => {
+      {chatRoom?.map((room, i) => {
         return (
           <Link
             to={`/chat/${room.id}`}
@@ -33,16 +34,16 @@ const Users = () => {
                 display: "flex",
                 justifyContent: "flex-start",
 
-                mt: 1,
+                mt: 2,
                 gap: 2,
               }}
             >
               <Avatar sx={{ width: 35, height: 35 }} />
               <Box sx={{ display: "flex", flexDirection: "column" }}>
                 <Typography variant="body1">
-                  {room.user[indexArray[i]].fName.toUpperCase()}&nbsp;
-                  {room.user[indexArray[i]].lName.toUpperCase()}&nbsp;
-                  {room.user[indexArray[i]].email}
+                  {room.user[indexArray[i]]?.fName.toUpperCase()}&nbsp;
+                  {room.user[indexArray[i]]?.lName.toUpperCase()}&nbsp;
+                  {room.user[indexArray[i]]?.email}
                 </Typography>
 
                 <Typography variant="caption" color={"dimgray"}>

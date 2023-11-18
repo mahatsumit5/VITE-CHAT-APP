@@ -40,11 +40,11 @@ export const getUserByEmail = async (email) => {
   }
 };
 
-export const getAllUsers = async () => {
+export const getAllUsers = async (email) => {
   try {
     const { data } = await axios({
       method: "get",
-      url: `http://localhost:8000/api/v1/user`,
+      url: `http://localhost:8000/api/v1/user/${email}`,
     });
     return data;
   } catch (error) {

@@ -4,6 +4,7 @@ import storage from "redux-persist/lib/storage";
 import chatRoomReducer from "./redux/chatRoomSlice";
 import userReducer from "./redux/userSlice";
 import currentRoomReducer from "./redux/currentRoomSlice";
+import sideBarReducer from "./redux/sideBarSlice";
 const userPresistConfig = {
   key: "user",
   storage,
@@ -16,6 +17,7 @@ const store = configureStore({
     chatRoom: chatRoomReducer,
     user: persistedUserReducer,
     currentRoom: currentRoomReducer,
+    sideBar: sideBarReducer,
   },
 });
 

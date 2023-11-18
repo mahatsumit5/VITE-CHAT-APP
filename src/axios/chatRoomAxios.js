@@ -34,6 +34,7 @@ export const createChatRoom = async (obj) => {
       },
       data: obj,
     });
+    return data;
   } catch (error) {
     console.log(error);
   }

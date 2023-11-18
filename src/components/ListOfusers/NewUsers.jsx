@@ -9,7 +9,7 @@ const NewUsers = () => {
   const { user } = useSelector((store) => store.user);
   const [users, setUsers] = useState([]);
   async function getusers() {
-    const { status, users } = await getAllUsers();
+    const { status, users } = await getAllUsers(user.email);
     if (status === true) {
       setUsers(users);
     }

@@ -9,7 +9,7 @@ const chatRoomSlice = createSlice({
   initialState,
   reducers: {
     setChatRoom: (state, { payload }) => {
-      state.chatRoom = [payload];
+      state.chatRoom = payload;
     },
   },
 });

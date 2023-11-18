@@ -17,26 +17,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { getChatRoomAction } from "../action/chatRoomAction";
 import { getFriendIndex } from "../getFriendIndexFunction";
 import FooterNavigation from "../components/chatRoomPage/FooterNavigation";
+import CustomDrawer from "../components/CustomDrawer";
+import CustomModal from "../components/CustomModal";
 
 const ChatRoom = () => {
   const { user } = useSelector((store) => store.user);
-  const { chatRoom } = useSelector((store) => store.chatRoom);
   const dispatch = useDispatch();
-  const [isOpen, setOpen] = useState(true);
 
   async function getRooms() {
     dispatch(getChatRoomAction(user.id));
   }
   useEffect(() => {
     getRooms();
-    if (!chatRoom) {
-      return;
-    }
   }, []);
 
   return (
     <>
-      <MessageBoxHeader setOpen={setOpen} open={isOpen} />
+      <MessageBoxHeader />
+      <CustomDrawer />
+      <CustomModal />
       <Divider />
       <Box sx={{ flexGrow: 1 }}>
         <Users />

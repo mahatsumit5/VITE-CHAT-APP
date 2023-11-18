@@ -5,9 +5,14 @@ import PhoneEnabledIcon from "@mui/icons-material/PhoneEnabled";
 import VideocamIcon from "@mui/icons-material/Videocam";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { getFriendIndex } from "../../getFriendIndexFunction";
 const Header = () => {
   const { currentRoom } = useSelector((store) => store.currentRoom);
+  const { user } = useSelector((store) => store.user);
   const navigate = useNavigate();
+
+  const x = getFriendIndex(currentRoom.user, user.id);
+
   return (
     <>
       {currentRoom.id && (
@@ -20,8 +25,8 @@ const Header = () => {
             />
             <Avatar sx={{ width: 25, height: 25 }} />
             <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-              {currentRoom?.user[1].fName.toUpperCase()}&nbsp;
-              {currentRoom?.user[1].lName.toUpperCase()}
+              {currentRoom?.user[x].fName.toUpperCase()}&nbsp;
+              {currentRoom?.user[x].lName.toUpperCase()}
             </Typography>
           </Box>
           <Box sx={{ display: "flex", gap: 2 }}>
