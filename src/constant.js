@@ -1,2 +1,4 @@
-export const serverUrl = "http://localhost:8000";
-export const renderUrl = "https://messenger-ezhi.onrender.com";
+export const serverUrl =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8000"
+    : "https://messenger-ezhi.onrender.com";

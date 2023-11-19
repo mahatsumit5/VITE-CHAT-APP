@@ -1,18 +1,18 @@
 import axios from "axios";
 import { serverUrl } from "../constant";
 
-export const axiosProcessor = async ({ method, url, obj }) => {
-  try {
-    const data = await axios({
-      method: method,
-      url: url,
-      data: obj,
-    });
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-};
+// export const axiosProcessor = async ({ method, url, obj }) => {
+//   try {
+//     const data = await axios({
+//       method: method,
+//       url: url,
+//       data: obj,
+//     });
+//     return data;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 export const postUser = async (userData) => {
   try {
