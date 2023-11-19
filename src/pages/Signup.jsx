@@ -1,9 +1,15 @@
 import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { postUser } from "../axios/userAxios";
-
+import { useNavigate } from "react-router-dom";
 const Login = () => {
-  const [form, setForm] = useState({ fName: "", lName: "", email: "" });
+  const navigate = useNavigate();
+  const [form, setForm] = useState({
+    fName: "",
+    lName: "",
+    email: "",
+    password: "",
+  });
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
@@ -11,7 +17,9 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await postUser(form);
-    console.log(data);
+    if (data.status === true) {
+      navigate("/login");
+    }
   };
 
   return (
@@ -58,6 +66,13 @@ const Login = () => {
           value={form.email}
           label="Email*"
           name="email"
+        />
+        <TextField
+          onChange={handleChange}
+          value={form.password}
+          label="Password*"
+          name="password"
+          type="password"
         />
         <Button
           variant="contained"

@@ -12,7 +12,7 @@ import PrivatePage from "./components/PrivatePage";
 import { connectSocket } from "./socketIo/socket";
 
 function App() {
-  // connectSocket();
+  connectSocket();
   return (
     <>
       <Routes>

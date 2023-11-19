@@ -1,11 +1,12 @@
 import { Avatar, Box, Container, Divider, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const MessagesComp = () => {
   const { currentRoom } = useSelector((store) => store.currentRoom);
   const { user } = useSelector((store) => store.user);
   const { messages } = currentRoom;
+
   return (
     <>
       <Box sx={{ flexGrow: 1, overflow: "auto", my: 2 }}>

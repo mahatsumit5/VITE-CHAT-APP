@@ -43,7 +43,6 @@ const Users = () => {
                 <Typography variant="body1">
                   {room.user[indexArray[i]]?.fName.toUpperCase()}&nbsp;
                   {room.user[indexArray[i]]?.lName.toUpperCase()}&nbsp;
-                  {room.user[indexArray[i]]?.email}
                 </Typography>
 
                 <Typography variant="caption" color={"dimgray"}>

@@ -5,15 +5,16 @@ const UserLayout = ({ children }) => {
   return (
     <Box
       sx={{
-        height: "90vh",
-        width: "400px",
-        m: "auto",
+        height: "92vh",
+        width: { xs: "95vw", sm: "400px" },
+        m: { xs: "none", sm: "auto" },
         display: "flex",
+        overflow: "hidden",
         flexDirection: "column",
         gap: 2,
-        boxShadow: 2,
+        boxShadow: { xs: "none", sm: "2" },
         borderRadius: 3,
-        p: 2,
+        p: { xs: 1, sm: 2 },
         mt: 2,
       }}
     >

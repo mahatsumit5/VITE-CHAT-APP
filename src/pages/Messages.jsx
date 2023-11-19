@@ -28,7 +28,7 @@ const Messages = () => {
 
       <MessagesComp />
 
-      <InputField />
+      <InputField id={id} />
     </Box>
   );
 };

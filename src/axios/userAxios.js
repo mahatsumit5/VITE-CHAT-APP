@@ -1,4 +1,5 @@
 import axios from "axios";
+import { serverUrl } from "../constant";
 
 export const axiosProcessor = async ({ method, url, obj }) => {
   try {
@@ -18,7 +19,7 @@ export const postUser = async (userData) => {
     const { data } = await axios({
       method: "post",
 
-      url: "https://messenger-ezhi.onrender.com/api/v1/user",
+      url: serverUrl + "/api/v1/user",
       data: userData,
     });
 
@@ -28,11 +29,12 @@ export const postUser = async (userData) => {
   }
 };
 
-export const getUserByEmail = async (email) => {
+export const getUserByEmail = async (form) => {
   try {
     const { data } = await axios({
-      method: "get",
-      url: `https://messenger-ezhi.onrender.com/api/v1/user/get-user/${email}`,
+      method: "post",
+      url: `${serverUrl}/api/v1/user/login-user`,
+      data: form,
     });
     return data;
   } catch (error) {
@@ -44,7 +46,7 @@ export const getAllUsers = async (email) => {
   try {
     const { data } = await axios({
       method: "get",
-      url: `https://messenger-ezhi.onrender.com/api/v1/user/${email}`,
+      url: `${serverUrl}/api/v1/user/${email}`,
     });
     return data;
   } catch (error) {
@@ -55,7 +57,7 @@ export const getChatRoom = async ({ from, to }) => {
   try {
     const { data } = await axios({
       method: "get",
-      url: `https://messenger-ezhi.onrender.com/api/v1/chat-room/${from}/${to}`,
+      url: `${serverUrl}/api/v1/chat-room/${from}/${to}`,
     });
     return data;
   } catch (error) {

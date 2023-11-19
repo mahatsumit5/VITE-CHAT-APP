@@ -8,13 +8,20 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [form, setform] = useState();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setform({ ...form, [name]: value });
+  };
+
   const handleLogin = async () => {
-    const status = await dispatch(loginAction(email));
-    if (status === true) {
+    const status = await dispatch(loginAction(form));
+    if (status === "success") {
       navigate("/chat");
     }
   };
+
   return (
     <Box
       sx={{
@@ -38,9 +45,15 @@ const Login = () => {
       >
         <TextField
           label="Email"
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
+          name="email"
+          type="email"
+          onChange={handleChange}
+        />
+        <TextField
+          label="password*"
+          name="password"
+          type="password"
+          onChange={handleChange}
         />
         <Button variant="contained" onClick={handleLogin}>
           Login

@@ -1,10 +1,11 @@
 import axios from "axios";
+import { serverUrl } from "../constant";
 
 export const getChatRoom = async (from) => {
   try {
     const { data } = await axios({
       method: "get",
-      url: `https://messenger-ezhi.onrender.com/api/v1/chat-room/${from}`,
+      url: `${serverUrl}/api/v1/chat-room/${from}`,
     });
     return data;
   } catch (error) {
@@ -16,7 +17,7 @@ export const getChatRoomById = async (id) => {
   try {
     const { data } = await axios({
       method: "get",
-      url: `https://messenger-ezhi.onrender.com/api/v1/chat-room/chat/${id}`,
+      url: `${serverUrl}/api/v1/chat-room/chat/${id}`,
     });
     return data;
   } catch (error) {
@@ -28,7 +29,7 @@ export const createChatRoom = async (obj) => {
   try {
     const { data } = await axios({
       method: "post",
-      url: `https://messenger-ezhi.onrender.com/api/v1/chat-room`,
+      url: `${serverUrl}/api/v1/chat-room`,
       headers: {
         "Content-Type": "application/json",
       },
