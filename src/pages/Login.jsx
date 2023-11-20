@@ -1,13 +1,15 @@
 import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { getUserByEmail } from "../axios/userAxios";
+
 import { loginAction } from "../action/userAction";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Spinner from "../components/Loading/Spinner";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [form, setform] = useState();
 
   const handleChange = (e) => {
@@ -16,10 +18,12 @@ const Login = () => {
   };
 
   const handleLogin = async () => {
+    setIsLoading(true);
     const status = await dispatch(loginAction(form));
     if (status === "success") {
       navigate("/chat");
     }
+    setIsLoading(false);
   };
 
   return (
@@ -55,8 +59,11 @@ const Login = () => {
           type="password"
           onChange={handleChange}
         />
-        <Button variant="contained" onClick={handleLogin}>
-          Login
+        <Link to={"/reset-password"}>
+          <Typography variant="subtitle">Reset Password.</Typography>
+        </Link>
+        <Button variant="contained" onClick={handleLogin} disabled={isLoading}>
+          {isLoading ? "Please wait..." : "Login"}
         </Button>
       </FormControl>
     </Box>

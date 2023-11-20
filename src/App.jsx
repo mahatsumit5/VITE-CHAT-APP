@@ -9,6 +9,7 @@ import Messages from "./pages/Messages";
 import UserLayout from "./components/UserLayout";
 import ListOfUsers from "./pages/ListOfUsers";
 import PrivatePage from "./components/PrivatePage";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/reset-password" element={<ForgotPassword />} />
         <Route
           path="/chat"
           element={

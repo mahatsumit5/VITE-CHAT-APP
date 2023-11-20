@@ -5,7 +5,7 @@ const UserLayout = ({ children }) => {
   return (
     <Box
       sx={{
-        height: "92vh",
+        height: "80vh",
         width: { xs: "95vw", sm: "400px" },
         m: { xs: "none", sm: "auto" },
         display: "flex",

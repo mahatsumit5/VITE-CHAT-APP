@@ -29,13 +29,26 @@ export const postUser = async (userData) => {
   }
 };
 
-export const getUserByEmail = async (form) => {
+export const loginUser = async (form) => {
   try {
     const { data } = await axios({
       method: "post",
       url: `${serverUrl}/api/v1/user/login-user`,
       data: form,
     });
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const resetPassword = async (email) => {
+  try {
+    const { data } = await axios({
+      method: "get",
+      url: `${serverUrl}/api/v1/user/reset-password/${email}`,
+    });
+
     return data;
   } catch (error) {
     console.log(error);
