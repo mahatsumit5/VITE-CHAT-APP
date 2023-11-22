@@ -12,9 +12,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <HashRouter>
-          <App />
-        </HashRouter>
+        <App />
 
         <ToastContainer />
       </Provider>
