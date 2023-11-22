@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { loginUser, postUser } from "../axios/userAxios";
+import { loginUser, postUser, uploadProfileImage } from "../axios/userAxios";
 import { setUser } from "../redux/userSlice";
 
 export const loginAction = (form) => async (dispatch) => {
@@ -9,6 +9,14 @@ export const loginAction = (form) => async (dispatch) => {
     dispatch(setUser(user));
   }
   return status;
+};
+
+export const uploadProfileAction = (obj) => async (dispatch) => {
+  const { status, message, user } = await uploadProfileImage(obj);
+  toast[status](message);
+  if (status === "success") {
+    dispatch(setUser(user));
+  }
 };
 
 export const signUpAction = async (userData) => {

@@ -1,23 +1,25 @@
 import { Avatar, Box, Button, Divider, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CloseIcon from "@mui/icons-material/Close";
 import { setToggleMenu } from "../redux/sideBarSlice";
+import UploadProfile from "./uploadProfiePicture/UploadProfile";
 const CustomDrawer = () => {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((store) => store.sideBar);
   const { user } = useSelector((store) => store.user);
+
   return (
     <Box
       sx={{
         display: isOpen ? "block" : "none",
         position: "absolute",
-        top: 17,
+        top: 10,
 
-        height: "84vh",
-        width: "350px",
+        height: "80vh",
+        width: "400px",
         bgcolor: "white",
-        boxShadow: 1,
+        // boxShadow: 1,
         zIndex: 10,
         p: 1,
         borderRadius: 2,
@@ -44,7 +46,7 @@ const CustomDrawer = () => {
       </Box>
       <Divider />
       {/* user details */}
-      <Box sx={{ display: "flex" }}></Box>
+      <UploadProfile />
     </Box>
   );
 };

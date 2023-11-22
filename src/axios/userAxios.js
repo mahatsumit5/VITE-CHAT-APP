@@ -67,6 +67,19 @@ export const changePassword = async (obj) => {
     console.log(error);
   }
 };
+export const uploadProfileImage = async (obj) => {
+  try {
+    const { data } = await axios({
+      method: "put",
+      url: `${serverUrl}/api/v1/user`,
+      data: obj,
+    });
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getAllUsers = async (email) => {
   try {
