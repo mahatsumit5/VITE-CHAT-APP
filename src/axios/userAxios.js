@@ -42,11 +42,24 @@ export const loginUser = async (form) => {
     console.log(error);
   }
 };
-export const resetPassword = async (email) => {
+export const getUserToResetPassword = async (email) => {
   try {
     const { data } = await axios({
       method: "get",
       url: `${serverUrl}/api/v1/user/reset-password/${email}`,
+    });
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const changePassword = async (obj) => {
+  try {
+    const { data } = await axios({
+      method: "put",
+      url: `${serverUrl}/api/v1/user/change-password`,
+      data: obj,
     });
 
     return data;
