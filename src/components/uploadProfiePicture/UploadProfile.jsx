@@ -19,7 +19,6 @@ function UploadProfile() {
 
     dispatch(uploadProfileAction(formdt));
   };
-  console.log(`http://localhost:8000/${user.profile.slice(7)}`);
   return (
     <Box
       sx={{
@@ -45,7 +44,7 @@ function UploadProfile() {
         }}
       >
         <img
-          src={`http://localhost:8000${user.profile.slice(6)}`}
+          src={`http://localhost:8000${user.profile?.slice(6)}`}
           className="profile-image"
         />
         {profileImg ? (

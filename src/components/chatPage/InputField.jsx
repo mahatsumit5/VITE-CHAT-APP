@@ -7,7 +7,11 @@ import { getFriendIndex } from "../../getFriendIndexFunction";
 import { io } from "socket.io-client";
 import { getChatRoomByIdAction } from "../../action/chatRoomAction";
 const InputField = ({ id }) => {
-  const socket = io("http://localhost:8000");
+  const socket = io(
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:8000"
+      : "https://messenger-j2bf.onrender.com/"
+  );
   socket.on("connect", () => {
     console.log("connected");
   });
