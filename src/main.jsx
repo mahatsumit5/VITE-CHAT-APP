@@ -7,11 +7,14 @@ import { Provider } from "react-redux";
 import { store, persistor } from "./store";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { HashRouter } from "react-router-dom";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <HashRouter>
+          <App />
+        </HashRouter>
 
         <ToastContainer />
       </Provider>
