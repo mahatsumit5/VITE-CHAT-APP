@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import ChatRoom from "./pages/ChatRoom";
-import Messages from "./pages/Messages";
+
 import UserLayout from "./components/UserLayout";
 import ListOfUsers from "./pages/ListOfUsers";
 import PrivatePage from "./components/PrivatePage";
@@ -15,7 +15,6 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="*" element={<Home />} />
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
@@ -30,16 +29,7 @@ function App() {
             </PrivatePage>
           }
         />
-        <Route
-          path="/chat/:id"
-          element={
-            <PrivatePage>
-              <UserLayout>
-                <Messages />
-              </UserLayout>
-            </PrivatePage>
-          }
-        />
+
         <Route
           path="/chat/users"
           element={

@@ -4,8 +4,8 @@ import Users from "../components/chatRoomPage/Users";
 import MessageBoxHeader from "../components/chatRoomPage/MessageBoxHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { getChatRoomAction } from "../action/chatRoomAction";
-import FooterNavigation from "../components/chatRoomPage/FooterNavigation";
 import CustomDrawer from "../components/CustomDrawer";
+import Messages from "../components/chatPage/Messages";
 
 const ChatRoom = () => {
   const { user } = useSelector((store) => store.user);
@@ -20,15 +20,15 @@ const ChatRoom = () => {
 
   return (
     <>
-      <MessageBoxHeader />
-      <CustomDrawer />
-      {/* <CustomModal /> */}
-      <Divider />
-      <Box sx={{ flexGrow: 1 }}>
+      {/* users information */}
+      <Box sx={{ width: "40%", p: 1 }}>
+        <MessageBoxHeader />
         <Users />
       </Box>
-      <Divider />
-      <FooterNavigation />
+      <Divider orientation="vertical" />
+      <Box sx={{ width: "60%" }}>
+        <Messages />
+      </Box>
     </>
   );
 };

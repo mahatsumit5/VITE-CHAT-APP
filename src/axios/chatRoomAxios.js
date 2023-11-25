@@ -40,3 +40,19 @@ export const createChatRoom = async (obj) => {
     console.log(error);
   }
 };
+
+export const deleteChatRoom = async (id, obj) => {
+  try {
+    const { data } = await axios({
+      method: "delete",
+      url: `${serverUrl}/api/v1/chat-room/${id}`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: obj,
+    });
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

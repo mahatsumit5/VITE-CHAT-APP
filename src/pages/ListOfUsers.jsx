@@ -7,7 +7,7 @@ const ListOfUsers = () => {
   const navigate = useNavigate();
 
   return (
-    <Box>
+    <Box sx={{ width: "100%", p: 1 }}>
       <div style={{ display: "flex" }}>
         <ArrowLeftIcon
           sx={{ mt: 1, fontSize: 30, color: "blue" }}

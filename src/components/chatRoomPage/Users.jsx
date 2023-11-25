@@ -1,10 +1,9 @@
 import { Avatar, Box, Divider, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getFriendIndex } from "../../getFriendIndexFunction";
-
-let index;
+import { getChatRoomByIdAction } from "../../action/chatRoomAction";
 
 const Users = () => {
   const indexArray = [];
@@ -15,18 +14,24 @@ const Users = () => {
 
     indexArray.push(x);
   }
+  const dispatch = useDispatch();
+  const handleClick = (id) => {
+    dispatch(getChatRoomByIdAction(id));
+  };
 
   return (
     <>
       {chatRoom?.map((room, i) => {
         return (
           <Link
-            to={`/chat/${room.id}`}
             key={room.id}
             style={{
               color: "black",
               fontStyle: "normal",
               textDecoration: "none",
+            }}
+            onClick={() => {
+              handleClick(room.id);
             }}
           >
             <Box
@@ -34,8 +39,8 @@ const Users = () => {
                 display: "flex",
                 justifyContent: "flex-start",
 
-                mt: 2,
-                gap: 2,
+                mt: 3,
+                gap: 3,
               }}
             >
               <Avatar sx={{ width: 35, height: 35 }} />

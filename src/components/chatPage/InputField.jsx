@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFriendIndex } from "../../getFriendIndexFunction";
 import { io } from "socket.io-client";
 import { getChatRoomByIdAction } from "../../action/chatRoomAction";
-const InputField = ({ id }) => {
+const InputField = () => {
   const socket =
     process.env.NODE_ENV === "development"
       ? io("http://localhost:8000")
@@ -34,7 +34,7 @@ const InputField = ({ id }) => {
   useEffect(() => {
     socket.on("receive_message", (data) => {
       if (data) {
-        dispatch(getChatRoomByIdAction(id));
+        dispatch(getChatRoomByIdAction(currentRoom.id));
       }
     });
   }, [socket]);

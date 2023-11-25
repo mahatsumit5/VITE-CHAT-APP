@@ -1,24 +1,30 @@
-import { Box } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import React from "react";
+import FooterNavigation from "./chatRoomPage/FooterNavigation";
 
 const UserLayout = ({ children }) => {
   return (
     <Box
       sx={{
-        height: "80vh",
-        width: { xs: "95vw", sm: "400px" },
-        m: { xs: "none", sm: "auto" },
+        height: "97vh",
         display: "flex",
-        overflow: "hidden",
         flexDirection: "column",
+        justifyContent: "space-between",
         gap: 2,
-        boxShadow: { xs: "none", sm: "2" },
-        borderRadius: 3,
-        p: { xs: 1, sm: 2 },
-        mt: 2,
       }}
     >
-      {children}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          gap: 1,
+          height: "90%",
+        }}
+      >
+        {children}
+      </Box>
+      <Divider />
+      <FooterNavigation />
     </Box>
   );
 };

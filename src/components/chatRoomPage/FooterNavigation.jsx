@@ -6,13 +6,21 @@ import CallIcon from "@mui/icons-material/Call";
 import { Link } from "react-router-dom";
 const FooterNavigation = () => {
   return (
-    <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-      <ChatIcon color="primary" />
-      <CallIcon color="primary" />
-      <Link to={"/chat/users"}>
-        <PeopleIcon color="primary" />
-      </Link>{" "}
-    </Box>
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          height: "10%",
+        }}
+      >
+        <ChatIcon color="primary" />
+        <CallIcon color="primary" />
+        <Link to={"/chat/users"}>
+          <PeopleIcon color="primary" />
+        </Link>{" "}
+      </Box>
+    </>
   );
 };
 

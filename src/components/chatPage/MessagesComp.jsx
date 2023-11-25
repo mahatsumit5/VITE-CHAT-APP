@@ -9,7 +9,7 @@ const MessagesComp = () => {
 
   return (
     <>
-      <Box sx={{ flexGrow: 1, overflow: "auto", my: 2 }}>
+      <Box sx={{ flexGrow: 1, overflow: "auto" }}>
         {messages?.map((message) => {
           return (
             <Box
