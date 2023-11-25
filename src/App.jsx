@@ -10,6 +10,7 @@ import UserLayout from "./components/UserLayout";
 import ListOfUsers from "./pages/ListOfUsers";
 import PrivatePage from "./components/PrivatePage";
 import ForgotPassword from "./pages/ForgotPassword";
+import MuiDrawer from "./components/muiDrawer/muiDrawer";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           }
         />
       </Routes>
+      <MuiDrawer />
     </>
   );
 }

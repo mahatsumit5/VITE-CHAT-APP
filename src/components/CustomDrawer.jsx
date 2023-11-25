@@ -12,10 +12,7 @@ const CustomDrawer = () => {
   return (
     <Box
       sx={{
-        display: isOpen ? "block" : "none",
-        position: "absolute",
-        top: 10,
-
+        // display: isOpen ? "block" : "none",
         height: "80vh",
         width: "400px",
         bgcolor: "white",

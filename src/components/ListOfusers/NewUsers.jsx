@@ -1,9 +1,10 @@
-import { Avatar, Box, Typography } from "@mui/material";
+import { Avatar, Box, Button, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { getAllUsers } from "../../axios/userAxios";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import { addNewFriendAction } from "../../action/chatRoomAction";
 import { useDispatch, useSelector } from "react-redux";
+import ClearIcon from "@mui/icons-material/Clear";
 const NewUsers = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((store) => store.user);
@@ -41,12 +42,23 @@ const NewUsers = () => {
                 {user.lName.toUpperCase()}&nbsp;
               </Typography>
             </Box>
-            <PersonAddAltIcon
-              color="primary"
+            <Button
+              variant="contained"
+              startIcon={<PersonAddAltIcon color="white" />}
               onClick={() => {
                 handleAddFriend(user.id);
               }}
-            />
+            >
+              Add friend
+            </Button>
+            <Button
+              variant="contained"
+              color="error"
+              startIcon={<ClearIcon color="white" />}
+              onClick={() => {}}
+            >
+              Cancel request
+            </Button>
           </Box>
         );
       })}
