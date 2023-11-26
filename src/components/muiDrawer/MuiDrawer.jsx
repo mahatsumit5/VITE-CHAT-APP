@@ -12,6 +12,7 @@ import { setToggleMenu } from "../../redux/sideBarSlice";
 import UploadProfile from "../uploadProfiePicture/UploadProfile";
 import CloseIcon from "@mui/icons-material/Close";
 import DrawerMenu from "./DrawerMenu";
+import { serverUrl } from "../../constant";
 
 function MuiDrawer() {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ function MuiDrawer() {
       <Box sx={{ width: 280 }}>
         <Box sx={{ display: "flex", justifyContent: "space-between", p: 1 }}>
           <div style={{ display: "flex", gap: "10px" }}>
-            <Avatar />
+            <Avatar src={`${serverUrl}${user.profile?.slice(6)}`} />
 
             <Typography variant="body2" sx={{ mt: 1 }}>
               Hi,

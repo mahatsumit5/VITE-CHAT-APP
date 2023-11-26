@@ -36,6 +36,7 @@ const NewUsers = () => {
 
   const deleteSentReq = (id) => {
     const obj = { from: user.id, to: id };
+    socket.emit("delete_request", obj);
     dispatch(deleteFriendReqAction(obj));
   };
   let bool = [];
@@ -67,7 +68,14 @@ const NewUsers = () => {
             key={user.id}
           >
             <Box sx={{ display: "flex", gap: 2 }}>
-              <Avatar sx={{ width: 45, height: 45 }} />
+              <Avatar
+                sx={{ width: 45, height: 45 }}
+                src={
+                  user.profile
+                    ? "http://localhost:8000/public/" + user.profile
+                    : undefined
+                }
+              />
               <Box
                 sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}
               >

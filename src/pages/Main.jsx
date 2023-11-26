@@ -49,6 +49,10 @@ const Main = () => {
         dispatch(getFriendReqAction(data.to));
       }
     });
+
+    socket.on("deleted_req", (data) => {
+      dispatch(getFriendReqAction(user.id));
+    });
   }, [socket]);
   return (
     <>
