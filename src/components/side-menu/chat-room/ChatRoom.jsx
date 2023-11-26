@@ -2,10 +2,10 @@ import { Avatar, Box, Divider, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getFriendIndex } from "../../getFriendIndexFunction";
-import { getChatRoomByIdAction } from "../../action/chatRoomAction";
+import { getFriendIndex } from "../../../getFriendIndexFunction";
+import { getChatRoomByIdAction } from "../../../action/chatRoomAction";
 
-const Users = () => {
+const ChatRoom = () => {
   const indexArray = [];
   const { chatRoom } = useSelector((store) => store.chatRoom);
   const { user } = useSelector((store) => store.user);
@@ -63,4 +63,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default ChatRoom;

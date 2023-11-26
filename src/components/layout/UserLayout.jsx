@@ -1,6 +1,6 @@
 import { Box, Divider } from "@mui/material";
 import React from "react";
-import FooterNavigation from "./chatRoomPage/FooterNavigation";
+import FooterNavigation from "../chatRoomPage/FooterNavigation";
 
 const UserLayout = ({ children }) => {
   return (
@@ -18,13 +18,13 @@ const UserLayout = ({ children }) => {
           display: "flex",
           flexDirection: "row",
           gap: 1,
-          height: "90%",
+          height: "100%",
         }}
       >
         {children}
       </Box>
-      <Divider />
-      <FooterNavigation />
+
+      {/* <FooterNavigation /> */}
     </Box>
   );
 };

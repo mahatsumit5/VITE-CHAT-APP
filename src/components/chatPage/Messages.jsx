@@ -1,11 +1,9 @@
 import { Box, Divider } from "@mui/material";
-import React, { useEffect } from "react";
+import React from "react";
 import MessagesComp from "./MessagesComp";
 import Header from "./Header";
 import InputField from "./InputField";
-import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { getChatRoomByIdAction } from "../../action/chatRoomAction";
+
 const Messages = () => {
   return (
     <Box
@@ -19,8 +17,8 @@ const Messages = () => {
     >
       <Header />
       <Divider />
-      <MessagesComp />
 
+      <MessagesComp />
       <InputField />
     </Box>
   );

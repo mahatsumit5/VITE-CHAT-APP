@@ -5,6 +5,8 @@ import chatRoomReducer from "./redux/chatRoomSlice";
 import userReducer from "./redux/userSlice";
 import currentRoomReducer from "./redux/currentRoomSlice";
 import sideBarReducer from "./redux/sideBarSlice";
+import sideMenuReducer from "./redux/sideMenuSlice";
+import friendRedReducer from "./redux/friendRequests";
 const userPresistConfig = {
   key: "user",
   storage,
@@ -18,6 +20,8 @@ const store = configureStore({
     user: persistedUserReducer,
     currentRoom: currentRoomReducer,
     sideBar: sideBarReducer,
+    sideMenu: sideMenuReducer,
+    friendReq: friendRedReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

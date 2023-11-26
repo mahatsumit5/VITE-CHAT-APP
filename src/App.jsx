@@ -1,16 +1,13 @@
 import "./App.css";
-import { Link, Route, Routes } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import ChatRoom from "./pages/ChatRoom";
+import Main from "./pages/Main";
 
-import UserLayout from "./components/UserLayout";
-import ListOfUsers from "./pages/ListOfUsers";
-import PrivatePage from "./components/PrivatePage";
+import PrivatePage from "./components/layout/PrivatePage";
 import ForgotPassword from "./pages/ForgotPassword";
-import MuiDrawer from "./components/muiDrawer/muiDrawer";
+import UserLayout from "./components/layout/UserLayout";
 
 function App() {
   return (
@@ -25,24 +22,12 @@ function App() {
           element={
             <PrivatePage>
               <UserLayout>
-                <ChatRoom />
-              </UserLayout>
-            </PrivatePage>
-          }
-        />
-
-        <Route
-          path="/chat/users"
-          element={
-            <PrivatePage>
-              <UserLayout>
-                <ListOfUsers />
+                <Main />
               </UserLayout>
             </PrivatePage>
           }
         />
       </Routes>
-      <MuiDrawer />
     </>
   );
 }

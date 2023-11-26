@@ -16,6 +16,7 @@ export const getChatRoomAction = (from) => async (dispatch) => {
 
 export const getChatRoomByIdAction = (id) => async (dispatch) => {
   const { status, message, data } = await getChatRoomById(id);
+
   if (status === true) {
     dispatch(setCurrentRoom(data));
     return data;

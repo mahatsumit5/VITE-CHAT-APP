@@ -4,16 +4,10 @@ import SendIcon from "@mui/icons-material/Send";
 import { sendMessageAction } from "../../action/messageAction";
 import { useDispatch, useSelector } from "react-redux";
 import { getFriendIndex } from "../../getFriendIndexFunction";
-import { io } from "socket.io-client";
+
 import { getChatRoomByIdAction } from "../../action/chatRoomAction";
+import { socket } from "../../socketIo/socket";
 const InputField = () => {
-  const socket =
-    process.env.NODE_ENV === "development"
-      ? io("http://localhost:8000")
-      : io("https://messenger-j2bf.onrender.com");
-  socket.on("connect", () => {
-    console.log("connected");
-  });
   const dispatch = useDispatch();
   const { currentRoom } = useSelector((store) => store.currentRoom);
   const { user } = useSelector((store) => store.user);
@@ -26,18 +20,12 @@ const InputField = () => {
       content: content,
       to: currentRoom.user[index].id,
     };
-    socket.emit("send_message", content);
+    socket.emit("send_message", content, currentRoom.id);
 
-    const status = await dispatch(sendMessageAction(obj));
+    dispatch(sendMessageAction(obj));
     setContent("");
   };
-  useEffect(() => {
-    socket.on("receive_message", (data) => {
-      if (data) {
-        dispatch(getChatRoomByIdAction(currentRoom.id));
-      }
-    });
-  }, [socket]);
+
   return (
     <Box sx={{ display: "flex", gap: 2 }}>
       <TextField

@@ -33,8 +33,8 @@ function MuiDrawer() {
 
             <Typography variant="body2" sx={{ mt: 1 }}>
               Hi,
-              {user.fName.toUpperCase()}&nbsp;
-              {user.lName.toUpperCase()}
+              {user.fName?.toUpperCase()}&nbsp;
+              {user.lName?.toUpperCase()}
             </Typography>
           </div>
           <Button
