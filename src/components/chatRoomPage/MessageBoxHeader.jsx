@@ -1,9 +1,10 @@
 import React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import { Avatar, Box, Typography } from "@mui/material";
+import { Avatar, Box, Button, MenuItem, Typography } from "@mui/material";
 import { setToggleMenu } from "../../redux/sideBarSlice";
 import { useDispatch } from "react-redux";
+import { setSearchBar } from "../../redux/searchBarSlice";
 const MessageBoxHeader = () => {
   const dispatch = useDispatch();
   return (
@@ -23,7 +24,13 @@ const MessageBoxHeader = () => {
       </a>
 
       <Typography> Messenger</Typography>
-      <SearchIcon color="secondary" />
+      <MenuItem
+        onClick={() => {
+          dispatch(setSearchBar(true));
+        }}
+      >
+        <SearchIcon color="secondary" />
+      </MenuItem>
     </Box>
   );
 };

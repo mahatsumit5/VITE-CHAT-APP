@@ -1,7 +1,34 @@
 import { Box, Divider, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NewUsers from "./components/NewUsers";
+import { getAllUsers } from "../../../axios/userAxios";
+import { useSelector } from "react-redux";
 const ListOfUsers = () => {
+  const { user } = useSelector((store) => store.user);
+  const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+
+  async function getusers() {
+    const { status, users } = await getAllUsers(user.email);
+    if (status === true) {
+      setUsers(users);
+    }
+  }
+  const handleSearch = (e) => {
+    const { value } = e.target;
+    const filteredUsers = users.filter(
+      (user) =>
+        user.fName.toLowerCase().includes(value.toLowerCase()) ||
+        user.lName.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredUsers(filteredUsers);
+  };
+
+  useEffect(() => {
+    getusers();
+    setFilteredUsers(users);
+  }, []);
+
   return (
     <Box sx={{ width: "100%", p: 1 }}>
       <div style={{ display: "flex" }}>
@@ -10,6 +37,7 @@ const ListOfUsers = () => {
           placeholder="Search for People"
           sx={{ my: 1 }}
           size="small"
+          onChange={handleSearch}
         />
       </div>
 
@@ -18,7 +46,7 @@ const ListOfUsers = () => {
         Find New Friends
       </Typography>
 
-      <NewUsers />
+      <NewUsers users={filteredUsers} />
     </Box>
   );
 };

@@ -6,6 +6,7 @@ import userReducer from "./redux/userSlice";
 import currentRoomReducer from "./redux/currentRoomSlice";
 import sideBarReducer from "./redux/sideBarSlice";
 import sideMenuReducer from "./redux/sideMenuSlice";
+import searchBarReducer from "./redux/searchBarSlice";
 import friendRedReducer from "./redux/friendRequests";
 const userPresistConfig = {
   key: "user",
@@ -22,6 +23,7 @@ const store = configureStore({
     sideBar: sideBarReducer,
     sideMenu: sideMenuReducer,
     friendReq: friendRedReducer,
+    searchBar: searchBarReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

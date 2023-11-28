@@ -9,21 +9,11 @@ import {
   sendFriendRequestsAction,
 } from "../../../../action/friendReqAction";
 import { socket } from "../../../../socketIo/socket";
-const NewUsers = () => {
+const NewUsers = ({ users }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((store) => store.user);
   const { chatRoom } = useSelector((store) => store.chatRoom);
   const { sentReq } = useSelector((store) => store.friendReq);
-  const [users, setUsers] = useState([]);
-  async function getusers() {
-    const { status, users } = await getAllUsers(user.email);
-    if (status === true) {
-      setUsers(users);
-    }
-  }
-  useEffect(() => {
-    getusers();
-  }, []);
 
   const handleAddFriend = async (id) => {
     const obj = {
