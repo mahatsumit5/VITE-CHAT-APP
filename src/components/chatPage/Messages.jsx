@@ -4,7 +4,7 @@ import MessagesComp from "./MessagesComp";
 import Header from "./Header";
 import InputField from "./InputField";
 
-const Messages = () => {
+const Messages = ({ setResponsiveDisplay }) => {
   return (
     <Box
       sx={{
@@ -13,9 +13,11 @@ const Messages = () => {
         justifyContent: "space-between",
         height: "100%",
         gap: 2,
+        borderLeft: 1,
+        p: 1,
       }}
     >
-      <Header />
+      <Header setResponsiveDisplay={setResponsiveDisplay} />
       <Divider />
 
       <MessagesComp />

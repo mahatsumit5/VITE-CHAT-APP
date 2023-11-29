@@ -1,7 +1,16 @@
-import { Avatar, Box, Divider, Typography } from "@mui/material";
+import { Avatar, Box, Button, Divider, Typography } from "@mui/material";
 import React from "react";
-
-const User = ({ user }) => {
+import { useDispatch, useSelector } from "react-redux";
+import { serverUrl } from "../../constant";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { setMainDisplay } from "../../redux/sideMenuSlice";
+import defaultImg from "/default.png";
+const User = () => {
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector((store) => store.user);
+  const profile = currentUser.profile
+    ? `${serverUrl}` + "/" + currentUser.profile?.slice(7)
+    : defaultImg;
   return (
     <Box
       sx={{
@@ -11,28 +20,40 @@ const User = ({ user }) => {
         alignItems: "center",
         height: "100%",
         gap: 2,
+        borderLeft: { xs: 0, sm: 1 },
+        borderColor: "darkgray",
       }}
     >
+      <Button
+        sx={{ marginRight: 25 }}
+        onClick={() => {
+          dispatch(setMainDisplay("main"));
+        }}
+      >
+        <ArrowBackIosIcon />
+      </Button>
       <Box
         sx={{
           width: 200,
           height: 200,
 
-          borderRadius: 10,
-          boxShadow: 1,
+          borderRadius: "50%",
+          boxShadow: 3,
         }}
       >
         <img
-          src={`http://localhost:8000/` + user.profile.slice(7)}
+          src={profile}
           height={"100%"}
           width={"100%"}
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "cover", borderRadius: "50%" }}
         />
       </Box>
-      {/* user information */}
+      {/* currentUser information */}
+      <Button variant="contained">Add friend</Button>
       <Typography variant="h5">
-        {user.fName}&nbsp;{user.lName}
+        {currentUser.fName}&nbsp;{currentUser.lName}
       </Typography>
+      <Typography variant="h5">{currentUser.email}</Typography>
     </Box>
   );
 };

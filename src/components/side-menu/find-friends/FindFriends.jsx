@@ -12,6 +12,7 @@ const ListOfUsers = () => {
     const { status, users } = await getAllUsers(user.email);
     if (status === true) {
       setUsers(users);
+      setFilteredUsers(users);
     }
   }
   const handleSearch = (e) => {

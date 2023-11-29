@@ -38,6 +38,7 @@ function ForgotPassword() {
       window.location.assign(link);
       setForm("ResetPassword");
     }
+    toast[status](message);
   };
   const handlePasswordChange = (e) => {
     const { name, value } = e.target;

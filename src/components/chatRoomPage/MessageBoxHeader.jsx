@@ -15,15 +15,18 @@ const MessageBoxHeader = () => {
         justifyContent: "space-between",
       }}
     >
-      <a
-        onClick={() => {
-          dispatch(setToggleMenu(true));
-        }}
-      >
-        <MenuIcon color="primary" />
-      </a>
-
-      <Typography> Messenger</Typography>
+      <MenuItem>
+        <a
+          onClick={() => {
+            dispatch(setToggleMenu(true));
+          }}
+        >
+          <MenuIcon color="primary" />
+        </a>
+      </MenuItem>
+      <MenuItem>
+        <Typography> Messenger</Typography>
+      </MenuItem>
       <MenuItem
         onClick={() => {
           dispatch(setSearchBar(true));

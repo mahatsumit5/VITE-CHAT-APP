@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadProfileAction } from "../../action/userAction";
+import { serverUrl } from "../../constant";
 function UploadProfile() {
   const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ function UploadProfile() {
         }}
       >
         <img
-          src={`http://localhost:8000${user.profile?.slice(6)}`}
+          src={`${serverUrl}${user.profile?.slice(6)}`}
           className="profile-image"
         />
         {profileImg ? (

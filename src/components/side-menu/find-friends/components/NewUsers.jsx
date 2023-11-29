@@ -9,6 +9,8 @@ import {
   sendFriendRequestsAction,
 } from "../../../../action/friendReqAction";
 import { socket } from "../../../../socketIo/socket";
+import { setCurrentUser } from "../../../../redux/userSlice";
+import { setMainDisplay } from "../../../../redux/sideMenuSlice";
 const NewUsers = ({ users }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((store) => store.user);
@@ -57,7 +59,13 @@ const NewUsers = ({ users }) => {
             }}
             key={user.id}
           >
-            <Box sx={{ display: "flex", gap: 2 }}>
+            <Box
+              sx={{ display: "flex", gap: 2 }}
+              onClick={() => {
+                dispatch(setCurrentUser(user));
+                dispatch(setMainDisplay("user"));
+              }}
+            >
               <Avatar
                 sx={{ width: 45, height: 45 }}
                 src={

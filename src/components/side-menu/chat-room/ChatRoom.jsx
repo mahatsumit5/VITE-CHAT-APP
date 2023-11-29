@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getFriendIndex } from "../../../getFriendIndexFunction";
 import { getChatRoomByIdAction } from "../../../action/chatRoomAction";
+import { serverUrl } from "../../../constant";
 
-const ChatRoom = () => {
+const ChatRoom = ({ setResponsiveDisplay }) => {
   const indexArray = [];
   const { chatRoom } = useSelector((store) => store.chatRoom);
   const { user } = useSelector((store) => store.user);
@@ -17,6 +18,7 @@ const ChatRoom = () => {
   const dispatch = useDispatch();
   const handleClick = (id) => {
     dispatch(getChatRoomByIdAction(id));
+    setResponsiveDisplay(true);
   };
 
   return (
@@ -43,7 +45,16 @@ const ChatRoom = () => {
                 gap: 3,
               }}
             >
-              <Avatar sx={{ width: 35, height: 35 }} />
+              <Avatar
+                sx={{ width: 35, height: 35 }}
+                src={
+                  room?.user[indexArray[i]]?.profile
+                    ? `${serverUrl}${room?.user[indexArray[i]]?.profile?.slice(
+                        6
+                      )}`
+                    : null
+                }
+              />
               <Box sx={{ display: "flex", flexDirection: "column" }}>
                 <Typography variant="body1">
                   {room.user[indexArray[i]]?.fName.toUpperCase()}&nbsp;

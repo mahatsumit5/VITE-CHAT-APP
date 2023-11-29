@@ -20,19 +20,19 @@ import User from "../components/user/User";
 import { socket } from "../socketIo/socket";
 const Main = () => {
   const { user } = useSelector((store) => store.user);
-  const { display } = useSelector((store) => store.sideMenu);
-
+  const { display, mainDisplay } = useSelector((store) => store.sideMenu);
+  const [responsiveDisplay, setResponsiveDisplay] = useState(false);
   const dispatch = useDispatch();
 
   const displayComponent = {
-    chat: <ChatRoom />,
+    chat: <ChatRoom setResponsiveDisplay={setResponsiveDisplay} />,
     friends: <Friends />,
     findFriends: <FindFriends />,
     friendRequests: <FriendRequests />,
   };
-  const mainDisplay = {
-    main: <Messages />,
-    user: <User user={user} />,
+  const mainDisplayComp = {
+    main: <Messages setResponsiveDisplay={setResponsiveDisplay} />,
+    user: <User />,
   };
   useEffect(() => {
     dispatch(getChatRoomAction(user.id));
@@ -57,12 +57,25 @@ const Main = () => {
   return (
     <>
       {/* users information */}
-      <Box sx={{ width: 350, p: 1 }}>
+      <Box
+        sx={{
+          width: { xs: "100%", sm: 350, md: 350 },
+          p: 1,
+          display: { xs: responsiveDisplay ? "none" : "block", md: "block" },
+        }}
+      >
         <MessageBoxHeader />
         {displayComponent[display]}
       </Box>
-      <Divider orientation="vertical" />
-      <Box sx={{ width: "100%" }}>{mainDisplay.main}</Box>
+      {/* <Divider orientation="vertical" /> */}
+      <Box
+        sx={{
+          width: "100%",
+          display: { xs: responsiveDisplay ? "block" : "none", md: "block" },
+        }}
+      >
+        {mainDisplayComp[mainDisplay]}
+      </Box>
       <MuiDrawer />
     </>
   );
