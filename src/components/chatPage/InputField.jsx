@@ -20,9 +20,12 @@ const InputField = () => {
       content: content,
       to: currentRoom.user[index].id,
     };
-    socket.emit("send_message", content, currentRoom.id);
 
-    dispatch(sendMessageAction(obj));
+    const status = await dispatch(sendMessageAction(obj));
+    console.log(status);
+    if (status) {
+      socket.emit("send_message", content, currentRoom.id);
+    }
     setContent("");
   };
 

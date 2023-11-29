@@ -1,4 +1,12 @@
-import { Avatar, Box, Button, MenuItem, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Link,
+  Menu,
+  MenuItem,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import PhoneEnabledIcon from "@mui/icons-material/PhoneEnabled";
@@ -35,15 +43,15 @@ const Header = ({ setResponsiveDisplay }) => {
       {currentRoom.id && (
         <Box sx={{ display: "flex", justifyContent: "space-between", p: 1 }}>
           {/* user name */}
-          <Box sx={{ display: "flex", gap: 1 }}>
-            <Button
+          <Box sx={{ display: "flex" }}>
+            <Link
               size="small"
               onClick={() => {
                 setResponsiveDisplay(false);
               }}
             >
               <ArrowBackIosIcon color="secondary" />
-            </Button>
+            </Link>
             <MenuItem
               onClick={() => {
                 dispatch(setCurrentUser(currentRoom.user[friendIndex]));
@@ -51,7 +59,7 @@ const Header = ({ setResponsiveDisplay }) => {
               }}
             >
               <Avatar
-                sx={{ width: 25, height: 25 }}
+                sx={{ width: 35, height: 35 }}
                 src={
                   currentRoom?.user[friendIndex]?.profile
                     ? `${serverUrl}${currentRoom?.user[
@@ -60,6 +68,8 @@ const Header = ({ setResponsiveDisplay }) => {
                     : null
                 }
               />
+            </MenuItem>
+            <MenuItem>
               <Typography variant="body1" sx={{ fontWeight: "bold" }}>
                 {currentRoom?.user[friendIndex].fName.toUpperCase()}&nbsp;
                 {currentRoom?.user[friendIndex].lName.toUpperCase()}
@@ -69,8 +79,9 @@ const Header = ({ setResponsiveDisplay }) => {
           {/* Icons */}
           <Box sx={{ display: "flex", gap: 2 }}>
             <PhoneEnabledIcon color="success" />
-            <VideocamIcon color="primary" />
-            <DeleteForeverIcon color="error" onClick={handleDelete} />
+            <a onClick={handleDelete}>
+              <DeleteForeverIcon color="error" />
+            </a>
           </Box>
         </Box>
       )}
