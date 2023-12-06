@@ -1,92 +1,63 @@
 import axios from "axios";
 import { serverUrl } from "../constant";
-
+import { axiosProcessor } from "./axiosProcessor";
+const userApi = serverUrl + "/api/v1/user";
 export const postUser = async (userData) => {
-  try {
-    const { data } = await axios({
-      method: "post",
-
-      url: serverUrl + "/api/v1/user",
-      data: userData,
-    });
-
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  return axiosProcessor({
+    method: "post",
+    url: userApi,
+    obj: userData,
+  });
 };
 
 export const loginUser = async (form) => {
-  try {
-    const { data } = await axios({
-      method: "post",
-      url: `${serverUrl}/api/v1/user/login-user`,
-      data: form,
-    });
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  return axiosProcessor({
+    method: "post",
+    url: `${userApi}/login-user`,
+    obj: form,
+  });
 };
+
+export const getUser = async () => {
+  return axiosProcessor({ method: "get", isPrivate: true, url: userApi });
+};
+
 export const getUserToResetPassword = async (email) => {
-  try {
-    const { data } = await axios({
-      method: "get",
-      url: `${serverUrl}/api/v1/user/reset-password/${email}`,
-    });
-
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  return axiosProcessor({
+    method: "get",
+    url: `${userApi}/reset-password/${email}`,
+  });
 };
+
 export const changePassword = async (obj) => {
-  try {
-    const { data } = await axios({
-      method: "put",
-      url: `${serverUrl}/api/v1/user/change-password`,
-      data: obj,
-    });
-
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  return axiosProcessor({
+    method: "put",
+    url: userApi + "/" + "change-password",
+    obj,
+  });
 };
-export const uploadProfileImage = async (obj) => {
-  try {
-    const { data } = await axios({
-      method: "put",
-      url: `${serverUrl}/api/v1/user`,
-      data: obj,
-    });
 
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+export const uploadProfileImage = async (obj) => {
+  return axiosProcessor({
+    method: "put",
+    url: userApi,
+    obj,
+    isPrivate: true,
+  });
 };
 
 export const getAllUsers = async (email) => {
-  try {
-    const { data } = await axios({
-      method: "get",
-      url: `${serverUrl}/api/v1/user/${email}`,
-    });
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  return axiosProcessor({
+    method: "get",
+    url: `${userApi}/${email}`,
+    isPrivate: true,
+  });
 };
+
 export const getChatRoom = async ({ from, to }) => {
-  try {
-    const { data } = await axios({
-      method: "get",
-      url: `${serverUrl}/api/v1/chat-room/${from}/${to}`,
-    });
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  return axiosProcessor({
+    method: "get",
+    isPrivate: true,
+    url: `${userApi}/${from}/${to}`,
+  });
 };

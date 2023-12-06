@@ -1,72 +1,44 @@
 import axios from "axios";
 import { serverUrl } from "../constant";
-const url = serverUrl + "/api/v1/friend-request";
+import { axiosProcessor } from "./axiosProcessor";
+const friendRequestUrl = serverUrl + "/api/v1/friend-request";
 export const sendFriendRequests = async (obj) => {
-  try {
-    const { data } = await axios({
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-
-      url,
-      data: obj,
-    });
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  return axiosProcessor({
+    method: "post",
+    isPrivate: true,
+    obj,
+    url: friendRequestUrl,
+  });
 };
 export const getFriendRequests = async (id) => {
-  try {
-    const { data } = await axios({
-      method: "get",
-      url: url + "/" + id,
-    });
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  return axiosProcessor({
+    method: "get",
+    isPrivate: true,
+    url: `${friendRequestUrl}/${id}`,
+  });
 };
 
 export const getSentRequests = async (id) => {
-  try {
-    const { data } = await axios({
-      method: "get",
-      url: `${url}/sent/${id}`,
-    });
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  return axiosProcessor({
+    method: "get",
+    isPrivate: true,
+    url: `${friendRequestUrl}/sent/${id}`,
+  });
 };
+
 export const deleteFriendRequests = async (obj) => {
-  try {
-    const { data } = await axios({
-      method: "delete",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: obj,
-      url,
-    });
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  return axiosProcessor({
+    method: "delete",
+    url: friendRequestUrl,
+    obj,
+    isPrivate: true,
+  });
 };
 export const updateFriendReqStatus = async (obj) => {
-  try {
-    const { data } = await axios({
-      method: "put",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: obj,
-      url,
-    });
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  return axiosProcessor({
+    method: "put",
+    isPrivate: true,
+    url: friendRequestUrl,
+    obj,
+  });
 };

@@ -1,9 +1,24 @@
 import { toast } from "react-toastify";
-import { loginUser, postUser, uploadProfileImage } from "../axios/userAxios";
+import {
+  getUser,
+  loginUser,
+  postUser,
+  uploadProfileImage,
+} from "../axios/userAxios";
 import { setUser } from "../redux/userSlice";
 
 export const loginAction = (form) => async (dispatch) => {
-  const { status, user, message } = await loginUser(form);
+  const { status, tokens } = await loginUser(form);
+  if (status === "success") {
+    localStorage.setItem("refreshJWT", tokens.refreshJWT);
+    sessionStorage.setItem("sessionJWT", tokens.accessJWT);
+    const status = await dispatch(getUserAction());
+    return status;
+  }
+};
+
+export const getUserAction = () => async (dispatch) => {
+  const { status, message, user } = await getUser();
   toast[status](message);
   if (status === "success") {
     dispatch(setUser(user));

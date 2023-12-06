@@ -1,5 +1,5 @@
 import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { loginAction } from "../action/userAction";
 import { useDispatch } from "react-redux";
@@ -20,6 +20,7 @@ const Login = () => {
   const handleLogin = async () => {
     setIsLoading(true);
     const status = await dispatch(loginAction(form));
+
     if (status === "success") {
       navigate("/chat");
     }
