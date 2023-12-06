@@ -1,6 +1,5 @@
-import axios from "axios";
 import { serverUrl } from "../constant";
-import { axiosProcessor } from "./axiosProcessor";
+import { axiosProcessor, getAccessJwt, getRefreshJWT } from "./axiosProcessor";
 const userApi = serverUrl + "/api/v1/user";
 export const postUser = async (userData) => {
   return axiosProcessor({
@@ -15,6 +14,21 @@ export const loginUser = async (form) => {
     method: "post",
     url: `${userApi}/login-user`,
     obj: form,
+  });
+};
+
+export const logoutUser = (email) => {
+  return axiosProcessor({
+    method: "put",
+    obj: {
+      accessJWT: getAccessJwt(),
+      refreshJWT: getRefreshJWT(),
+      email: email,
+    },
+
+    url: userApi + "/logout",
+    isPrivate: true,
+    refreshToken: true,
   });
 };
 
@@ -60,4 +74,14 @@ export const getChatRoom = async ({ from, to }) => {
     isPrivate: true,
     url: `${userApi}/${from}/${to}`,
   });
+};
+export const getNewAccessJWT = () => {
+  //refreshtoken is sent to get access token
+  const obj = {
+    method: "get",
+    url: serverUrl + "/get-refreshAccessJWT",
+    isPrivate: true,
+    refreshToken: true,
+  };
+  return axiosProcessor(obj);
 };

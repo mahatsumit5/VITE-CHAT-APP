@@ -1,17 +1,19 @@
 import { Box, Button } from "@mui/material";
-import React from "react";
 import SmsIcon from "@mui/icons-material/Sms";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/userSlice";
 import { setToggleMenu } from "../../redux/sideBarSlice";
 import { setDisplay } from "../../redux/sideMenuSlice";
 import Diversity3TwoToneIcon from "@mui/icons-material/Diversity3TwoTone";
+import { logoutUser } from "../../axios/userAxios";
 const DrawerMenu = () => {
+  const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await logoutUser(user.email);
     dispatch(setUser({}));
     dispatch(setToggleMenu(false));
   };

@@ -1,9 +1,10 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-function getAccessJwt() {
+import { getNewAccessJWT } from "./userAxios";
+export function getAccessJwt() {
   return sessionStorage.getItem("sessionJWT");
 }
-function getRefreshJWT() {
+export function getRefreshJWT() {
   return localStorage.getItem("refreshJWT");
 }
 export const axiosProcessor = async ({
@@ -11,9 +12,9 @@ export const axiosProcessor = async ({
   url,
   obj,
   isPrivate,
-  refreshJWT,
+  refreshToken,
 }) => {
-  const token = refreshJWT ? getRefreshJWT() : getAccessJwt();
+  const token = refreshToken ? getRefreshJWT() : getAccessJwt();
   const headers = {
     Authorization: isPrivate ? token : null,
   };
@@ -31,8 +32,15 @@ export const axiosProcessor = async ({
         "Your session has expired. Please login Again."
       )
     ) {
-      toast.error("Please login again");
-      window.location.href = "/login";
+      const { status, accessJWT } = await getNewAccessJWT();
+      if (status === "success") {
+        sessionStorage.setItem("sessionJWT", accessJWT);
+        return axiosProcessor({ method, url, obj, isPrivate, refreshToken });
+      }
+    }
+
+    if (error?.response?.data?.message === "jwt expired") {
+      // logoutUser();
     }
   }
 };
